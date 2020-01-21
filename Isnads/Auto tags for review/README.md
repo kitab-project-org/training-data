@@ -6,7 +6,7 @@ Contains files tagged by the model awaiting review.
 *Un-reviewed files use the extension '.auto_tagged'*
 *Reviewed files use the extension '.reviewed'*
 
-*For all reviewed files, ensure to update the csv file logging which lines have been reviewed*
+*For all reviewed files, ensure to update the json file logging which lines have been reviewed*
 
 ## **Tags**
 
