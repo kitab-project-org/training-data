@@ -32,7 +32,7 @@ For all files, the following tags are used (subject to change following review):
 
 ## **Process summary for training data creation or review**
 
-**NOTE:** *Gitbash commands detailed below are similar to those followed for OpenITI mARkdown, described in step [here:](https://docs.google.com/document/d/1XsRR56gn3LvpToTtmy7_YlLtG9bybZImhVMvX1SISrE/edit?usp=sharing "OpenITI mARkdown Annotation workflow")* 
+**NOTE:** *Gitbash commands detailed below are similar to those followed for OpenITI mARkdown, described [here:](https://docs.google.com/document/d/1XsRR56gn3LvpToTtmy7_YlLtG9bybZImhVMvX1SISrE/edit?usp=sharing "OpenITI mARkdown Annotation workflow")* 
 
   1. update your local repository in git bash using command 'git pull origin master' (ensure that you are in the 'training-data' repository in Gitbash before pulling.)
 
