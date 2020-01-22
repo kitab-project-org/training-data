@@ -7,24 +7,50 @@
 Contains all files entirely tagged or reviewed by a human. It should not contain files tags that have not been reviewed.
 
 **NOTE:**
-*For all files that are manually tagged, ensure that you update the json file logging which lines have been manually tagged*
+*For all files that are manually tagged, ensure that you update isnadtaggedlocations.json logging which lines have been manually tagged*
 
 ### 'Auto tags for review' : 
 
 Contains files tagged by the model awaiting review.
 
-**NOTE:** 
-*Un-reviewed files use the extension '.auto_tagged'*
-*Reviewed files use the extension '.reviewed'*
 
-*For all reviewed files, ensure to update the json file logging which lines have been reviewed*
+### 'Reviewed tags' :
+
+Contains files with automatic tags that have been reviewed
+
+*For all reviewed files, ensure to update isnadtaggedlocations.json logging which lines have been reviewed*
 
 ## **Tags**
 
-For all files, the following tags are used:
+For all files, the following tags are used (subject to change following review):
 
 | In-text Tag | Meaning |
 | --- | --- |
 | @Isnad_Beg@ | Indicates where an isnad begins |
 | @Isnad_End@ | Indicates where an isnad ends |
+
+
+## **Process summary for training data creation or review**
+
+**NOTE:** *Gitbash commands detailed below are similar to those followed for OpenITI mARkdown, described in step [here:](https://docs.google.com/document/d/1XsRR56gn3LvpToTtmy7_YlLtG9bybZImhVMvX1SISrE/edit?usp=sharing "OpenITI mARkdown Annotation workflow")* 
+
+..* update your local repository in git bash using command 'git pull origin master' (ensure that you are in the 'training-data' repository in Gitbash before pulling.)
+..* Choose a file to tag from Priority list.csv
+..* Annotate the file from a random starting place, taking a careful note of the line number **IMPORTANT: IT IS ESSENTIAL TO NOTE THE EXACT LINES THAT HAVE BEEN HUMAN-READ FOR THE MODEL TO WORK EFFECTIVELY**
+..* Tag the isnads in the file file for 2000 lines, using the markers given above. You may annotate in smaller sections across the text (e.g. from lines 2400-2900, lines 4000-4500, lines, lines 6200-6700, and lines 8100-8600).
+..* *if you are reviewing an auto-tagged file:* correct all of the isnad tags in the 2000 lines you are reviewing, deleting or moving erronous tags.
+..* Once 2000 lines are tagged, save the file. Open isnadtaggedlocations.json
+..* *if your text is on the list in the json file and has been tagged before:* add the lines that you have reviewed after 'taggedSections' using a comma to separate it from the previous tagged lines and in square brackets with a comma separating the first line tagged and the line following that tagged e.g.: [[1000,1200],[1500,1600]], and add your name to the annotators value, separating from the previous annotator with a comma, e.g.: "Previous Person, Second Person" 
+..* *if your text is new*: Add a new line to the json file, copy the template the new line, fill out the template with your details.
+**NOTE:** When noting lines tagged, the first number includes the text you have reviewed and the second number the line after you have finished review. E.g. if you read and tagged lines 1100-1200, you would write [1100,1201].
+..* Save the json file.
+
+### **Pushing back to GitHub*
+..* Go to gitbash, in gitbash go to the training-data folder
+..* Type: git add .
+..* Press enter
+..* Type: git commit -m"ENTER YOUR COMMENT HERE"
+..* Press enter
+..* Type: git push origin master
+..* Your local changes are now updated on the training data repository
 
