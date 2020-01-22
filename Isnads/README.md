@@ -38,7 +38,7 @@ For all files, the following tags are used (subject to change following review):
 
   1. Choose a file to tag from Priority list.csv
 
-  1. Annotate the file from a random starting place, taking a careful note of the line number 
+  1. Annotate the file from a random starting place, taking a careful note of the line number
   **IMPORTANT: IT IS ESSENTIAL TO NOTE THE EXACT LINES THAT HAVE BEEN HUMAN-READ FOR THE MODEL TO WORK EFFECTIVELY**
 
   1. Tag the isnads in the file file for 2000 lines, using the markers given above. You may annotate in smaller sections across the text (e.g. from lines 2400-2900, lines 4000-4500, lines, lines 6200-6700, and lines 8100-8600).
@@ -53,6 +53,8 @@ For all files, the following tags are used (subject to change following review):
   **NOTE:** When noting lines tagged, the first number includes the text you have reviewed and the second number the line after you have finished review. E.g. if you read and tagged lines 1100-1200, you would write [1100,1201].
 
   1. Save the json file.
+
+  1. **if you are reviewing an auto-tagged file:** Move the tagged file from the 'Autotags for review' folder to the 'Reviewed tags' folder.
 
 ### **Pushing back to GitHub**
   1. Go to gitbash, in gitbash go to the training-data folder
