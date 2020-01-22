@@ -1,5 +1,5 @@
 https://docs.google.com/presentation/d/13Ofrr07Wg687Nm0r67KnUIJqXFwSKPpOqdTuDwgRwj4/edit#slide=id.g62d71943b0_0_10
-Ryan's slides from a pasts at Arabic Pasts in 2019 on an earlier version of this isnad detection work
+Ryan's slides from a talk at Arabic Pasts in 2019 on an earlier version of this isnad detection work
 
 https://docs.google.com/document/d/1rlKgWR0HXNKdPUIe8uN0383OK0ahsAo5_e4tdgYtFd0/edit?usp=sharing
 A draft of the QNL blog post that goes into slightly more detail (will update with link to post when posted)
