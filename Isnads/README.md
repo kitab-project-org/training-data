@@ -24,10 +24,10 @@ Contains files with automatic tags that have been reviewed
 
 For all files, the following tags are used: 
 
-| **New tag** | Old Tag **do not use** | Meaning |
+| *New tag* | Meaning | Old Tag *do not use* |
 | --- | --- | --- |
-| @ISB@ | @Isnad_Beg@ | Indicates where an isnad begins |
-| @ISE@ | @Isnad_End@ | Indicates where an isnad ends |
+| @ISB@ | Indicates where an isnad begins | @Isnad_Beg@ |
+| @ISE@ | Indicates where an isnad ends | @Isnad_End@ |
 
 *NOTE: the tags have now changed to mARkdown compatible tags. Tags must be in all caps and between @ for the mARkdown to work. If correctly entered the tags will be highlighted*
 
