@@ -22,13 +22,14 @@ Contains files with automatic tags that have been reviewed
 
 ## **Tags**
 
-For all files, the following tags are used (subject to change following review):
+For all files, the following tags are used: 
 
-| In-text Tag | Meaning |
-| --- | --- |
-| @Isnad_Beg@ | Indicates where an isnad begins |
-| @Isnad_End@ | Indicates where an isnad ends |
+| **New tag** | Old Tag **do not use** | Meaning |
+| --- | --- | --- |
+| @ISB@ | @Isnad_Beg@ | Indicates where an isnad begins |
+| @ISE@ | @Isnad_End@ | Indicates where an isnad ends |
 
+*NOTE: the tags have now changed to mARkdown compatible tags. Tags must be in all caps and between @ for the mARkdown to work. If correctly entered the tags will be highlighted*
 
 ## **Process summary for training data creation or review**
 
