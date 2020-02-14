@@ -10,7 +10,8 @@ This folder contains the data for inter-annotator evaluation.
 
 ## **Annotation steps**
 
-  1. *In Git bash:* Git pull origin master to update your local repository with this folder
+  1. *In Git bash:* 
+                    Git pull origin master to update your local repository with this folder
 
   1. Create a copy of the file to be tagged in this folder
 
@@ -18,7 +19,8 @@ This folder contains the data for inter-annotator evaluation.
 
   1. Open the *.your_name* file and add isnad tags in the specified line range, and save.
 
-  1. *In Git bash:* Git add .
+  1. *In Git bash:* 
+                    Git add .
 
                     Git commit -m"*INSERT COMMENT*"
 
