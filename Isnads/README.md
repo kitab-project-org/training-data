@@ -67,3 +67,10 @@ For all files, the following tags are used:
   1. Press enter
   1. Your local changes are now updated on the training data repository
 
+## **Isnad comments file**
+
+Add to this file any isnads for which queries arise when tagging. 
+
+**For each isnad provide:** the text URI, starting line of queried isnad, excerpt of Arabic text with the texts and a short comment
+
+**Feedback:** During each discussion session, feedback will be provided on the queried excerpts. If the tagging was corrected, the corrected excerpt will be found in the 'Corrected excerpt' column of the csv.

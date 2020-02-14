@@ -19,6 +19,8 @@ This folder contains the data for inter-annotator evaluation.
   1. Open the *.your_name* file and add isnad tags in the specified line range, and save.
 
   1. *In Git bash:* Git add .
+
                     Git commit -m"*INSERT COMMENT*"
+
                     Git push origin master
 
