@@ -37,7 +37,7 @@ For all files, the following tags are used:
 
   1. update your local repository in git bash using command 'git pull origin master' (ensure that you are in the 'training-data' repository in Gitbash before pulling.)
 
-  1. Choose a file to tag from Priority list.csv
+  1. Choose a file to tag from Priority list.csv. **IMPORTANT: If choosing a new file to tag from OpenITI, always use the file in mARkdown**
 
   1. Annotate the file from a random starting place, taking a careful note of the line number
   **IMPORTANT: IT IS ESSENTIAL TO NOTE THE EXACT LINES THAT HAVE BEEN HUMAN-READ FOR THE MODEL TO WORK EFFECTIVELY**
