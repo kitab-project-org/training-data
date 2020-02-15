@@ -6,7 +6,7 @@ This folder contains the data for inter-annotator evaluation.
 
 | Text | Lines |
 | --- | --- |
-| 0355AbuFarajIsbahani.MaqatilTalibiyyin.Shamela0012404-ara1 | *INSERT LINE RANGE* |
+| 0355AbuFarajIsbahani.MaqatilTalibiyyin.Shamela0012404-ara1 | 1977-2473; 3269-3800; 7807-8340; 10538-11081 |
 
 ## **Annotation steps**
 
