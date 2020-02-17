@@ -1,4 +1,4 @@
-# **Inter annotation evaluation data**
+# **Inter annotator evaluation data**
 
 This folder contains the data for inter-annotator evaluation.
 
