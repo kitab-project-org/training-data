@@ -14,6 +14,6 @@ For all files, the following tags are used:
 
 | In-text Tag | Meaning |
 | --- | --- |
-| @Isnad_Beg@ | Indicates where an isnad begins |
-| @Isnad_End@ | Indicates where an isnad ends |
+| @ISB@ | Indicates where an isnad begins |
+| @ISE@ | Indicates where an isnad ends |
 
