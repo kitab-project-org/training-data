@@ -33,7 +33,13 @@ For all files, the following tags are used:
 
 ## **Process summary for training data creation or review**
 
-**NOTE:** *Gitbash commands detailed below are similar to those followed for OpenITI mARkdown, described [here:](https://docs.google.com/document/d/1XsRR56gn3LvpToTtmy7_YlLtG9bybZImhVMvX1SISrE/edit?usp=sharing "OpenITI mARkdown Annotation workflow")* 
+### **Useful links:** 
+
+*Gitbash commands detailed below are similar to those followed for OpenITI mARkdown, described [here](https://docs.google.com/document/d/1XsRR56gn3LvpToTtmy7_YlLtG9bybZImhVMvX1SISrE/edit?usp=sharing "OpenITI mARkdown Annotation workflow")* 
+
+*For tagging guidelines, see [here](https://docs.google.com/document/d/19IPG3APp8IIq8kENLSGEFCcCSEqrgEeOxjg6dm4WKH8/edit?usp=sharing "Guidelines for Tagging Isnads"). This is a working document and will be updated as part of the weekly meetings* 
+
+### **Process:**
 
   1. update your local repository in git bash using command 'git pull origin master' (ensure that you are in the 'training-data' repository in Gitbash before pulling.)
 
