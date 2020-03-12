@@ -9,8 +9,8 @@ Contains all files entirely tagged or reviewed by a human. It should not contain
 
 For all files, the following tags are used:
 
-| In-text Tag | Meaning |
-| --- | --- |
-| @Isnad_Beg@ | Indicates where an isnad begins |
-| @Isnad_End@ | Indicates where an isnad ends |
+|New in-text tag| Old in-text Tag | Meaning |
+|---| --- | --- |
+| @ISB@ | @Isnad_Beg@ | Indicates where an isnad begins |
+| @ISE@ | @Isnad_End@ | Indicates where an isnad ends |
 
