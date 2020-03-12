@@ -2,8 +2,9 @@
 179MalikIbnAnas.MudawwanaKubra,,,Shia000895Vols,2.04%,,N,N
 0179MalikIbnAnas.Muwatta,,,Shamela0028107,10.49%,,N,N
 0179MalikIbnAnas.SharhMuwatta,,,Shamela0012399,3.63%,,N,N
-0207Waqidi.Maghazi,History,,Shamela0012404,4.91,,N,N
+0207Waqidi.Maghazi,History,,Shamela0023680,4.91,,N,N
 0213IbnHisham.Tijan,,,Shamela0037473,4.87,,N,N
+0213IbnHisham.SiraNabawiyya,,,Shamela0023833-ara1,,,Y,Y
 0230IbnSacd.TabaqatKubra,biography,,Shamela0001686,21.42,,N,Y
 0240KhalifaIbnKhayyat.Tabaqat,biography,,Shamela0008682,14.74,,N,Y
 0240KhalifaIbnKhayyat.Tarikh,History,,Shia003055,12.55,,N,Y
@@ -19,6 +20,7 @@
 ibn abi dunya,,,,,,,
 0292Yacqubi.TarikhYacqubi,History,,JK001493,3.23,,Y,Y
 0300IbnKhurdadhbih.MasalikWaMamalik,Geography,,Shamela0011800,1.16,,Y,Y
+0310Tabari.Tarikh,History,,Shamela0009783-ara1.completed,,,Y,Y
 0355AbuFarajIsbahani.MaqatilTalibiyyin,,,Shamela0012404,22.69,,N,Y
 355AbuFarajIsbahani.Aghani,,,JK000927,0.86,,N,Y
 0365IbnFaqihHamadhani.Buldan,Geography,,Shamela0011685,1.39,,N,Y
@@ -47,14 +49,14 @@ Tha'alibi,,,,,,,
 0626YaqutHamawi.MucjamUdaba,biography,,Shamela0009788,8.84,,Y,Y
 0630IbnAthirCizzDin.Kamil,History,,JK000911,1.99,,Y,Y
 0681IbnKhallikan.WafayatAcyan,,,Shamela0001000,4.15,,Y,Y
-0711IbnManzurIfriqi.MukhtasarTarikhDimashq,History,,Shamela0003118,5.27,,,
-0733Nuwayri.NihayaArab,,,Shamela0010283,2.75,,,
-0742Mizzi.TahdhibKamal,,,Shamela0003722,22.39,,,
-0748Dhahabi.TarikhIslam,History,,Shamela0035100,14.31,,,
-0764Safadi.WafiBiWafayat,,,JK003609,9.68,,,
-0771Subki.TabaqatShaficiyaKubra,biography,,JK000914,10.8,,,
-0774IbnKathir.Bidaya,History,,Shamela0004445,8.55,,,
+0711IbnManzurIfriqi.MukhtasarTarikhDimashq,History,,Shamela0003118,5.27,,Y,Y
+0733Nuwayri.NihayaArab,,,Shamela0010283,2.75,,N,Y
+0742Mizzi.TahdhibKamal,,,Shamela0003722,22.39,,Y,Y
+0748Dhahabi.TarikhIslam,History,,Shamela0035100,14.31,,Y,Y
+0764Safadi.WafiBiWafayat,,,JK003609,9.68,,Y,Y
+0771Subki.TabaqatShaficiyaKubra,biography,,JK000914,10.8,,Y,Y
+0774IbnKathir.Bidaya,History,,Shamela0004445,8.55,,N,Y
 0774IbnKathir.TafsirQuran,Tafsir,,Shamela0023604,"9.30%
-",,,
-0874IbnTaghribirdi.NujumZahira,,,JK001330,6.27,,,
+",,N,Y
+0874IbnTaghribirdi.NujumZahira,,,JK001330,6.27,,Y,Y
 Suyuti,,,,,,,
