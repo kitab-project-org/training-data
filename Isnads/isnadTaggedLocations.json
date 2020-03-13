@@ -25,5 +25,8 @@
 {"text":"Shamela0003722","taggedSections":[[1952-2453]],"fullURI":"0742Mizzi.TahdhibKamal.Shamela0003722-ara1","annotator":"LN","comment":"","timeSpent":[]}
 {"text":"Shamela0023696","taggedSections":[],"fullURI":"0390Muqaddasi.AhsanTaqasim.Shamela0023696-ara1","annotator":"SP Loynes","comment":"","timeSpent":[]}
 {"text":"Shamela0011758","taggedSections":[[5500-7501]],"fullURI":"0565IbnZaydBayhaqi.TarikhBayhaq.Shamela0011758-ara1","annotator":"HRH","comment":"","timeSpent":[5.5]}
-{"text":"JK001493-ara1","taggedSections":[[inprogress]],"fullURI":"0292Yacqubi.TarikhYacqubi.JK001493-ara1","annotator":"HRH","comment":"","timeSpent":[]}
+{"text":"JK001493-ara1","taggedSections":[[5336-5737], [6800-7101], [7800-8101], [8470-8671], [14200-14601], [14780-15181]],"fullURI":"0292Yacqubi.TarikhYacqubi.JK001493-ara1","annotator":"HRH","comment":"All the tags in the parts I checked were redundant and besides, there was nothing that needed to be tagged. So, I just deleted a lot of redundant tags.","timeSpent":[4.5]}
+{"text":"Shamela0004017","taggedSections":[Inprogress],"fullURI":"0405HakimNaysaburi.TalkhisTarikhNaysabur.Shamela0004017-ara1","annotator":"HRH","comment":"","timeSpent":[]}
+{"text":"Shamela0023735","taggedSections":[Inprogress],"fullURI":"0626YaqutHamawi.MucjamBuldan.Shamela0023735-ara1","annotator":"HRH","comment":"","timeSpent":[]}
+{"text":"Shamela0009788","taggedSections":[Inprogress],"fullURI":"0626YaqutHamawi.MucjamUdaba.Shamela0009788-ara1","annotator":"HRH","comment":"","timeSpent":[]}
 {"text":"","taggedSections":[],"fullURI":"","annotator":"","comment":"","timeSpent":[]}
