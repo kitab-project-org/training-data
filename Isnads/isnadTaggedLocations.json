@@ -22,7 +22,7 @@
 {"text":"Shia_001707Vols","taggedSections":[[4589-5090],[30522-31523],[97388-97889]],"fullURI":"0241IbnHanbal.Musnad.Shia001707Vols-ara1","annotator":"SP Loynes","comment":"","timeSpent":[[15]]}
 {"text":"Shamela0011800","taggedSections":[[156-457],[1229-1530],[2329-2830]],"fullURI":"0300IbnKhurdadhbih.MasalikWaMamalik.Shamela0011800-ara1","annotator":"SP Loynes","comment":"", "timeSpent":[[2.5]]}
 {"text":"Shia003055","taggedSections":[[950-1456],[3607-4108],[5050-5554],[6238-6318],[8095-8416]],"0240KhalifaIbnKhayyat.Tarikh.Shia003055-ara1":,"annotator":"SP Loynes","comment":"","timeSpent":[[2.5],[3.5]]}
-{"text":"Shamela0003722","taggedSections":[[1952-2453]],"fullURI":"0742Mizzi.TahdhibKamal.Shamela0003722-ara1","annotator":"LN","comment":"","timeSpent":[]}
+{"text":"Shamela0003722","taggedSections":[[1952-2453], [34003-34504], [53796-54300], [198707-199208]],"fullURI":"0742Mizzi.TahdhibKamal.Shamela0003722-ara1","annotator":"LN","comment":"","timeSpent":[]}
 {"text":"Shamela0023696","taggedSections":[[395-896],[2389-2890],[5178-5679],[6344-6845]],"fullURI":"0390Muqaddasi.AhsanTaqasim.Shamela0023696-ara1","annotator":"SP Loynes","comment":"","timeSpent":[3]}
 {"text":"Shamela0011758","taggedSections":[[5500-7501]],"fullURI":"0565IbnZaydBayhaqi.TarikhBayhaq.Shamela0011758-ara1","annotator":"HRH","comment":"","timeSpent":[5.5]}
 {"text":"JK001493","taggedSections":[[5336-5737],[6800-7101],[7800-8101],[8470-8671],[14200-14601],[14780-15181]],"fullURI":"0292Yacqubi.TarikhYacqubi.JK001493-ara1","annotator":"HRH","comment":"All the tags in the parts I checked were redundant and besides, there was nothing that needed to be tagged. So, I just deleted a lot of redundant tags.","timeSpent":[4.5]}
