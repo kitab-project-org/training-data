@@ -69,6 +69,8 @@ For all files, the following tags are used:
   1. Press enter
   1. Type: git commit -m"ENTER YOUR COMMENT HERE"
   1. Press enter
+  1. Type: git pull origin master *always pull before you push to avoid merge conflicts*
+  1. Press enter
   1. Type: git push origin master
   1. Press enter
   1. Your local changes are now updated on the training data repository
