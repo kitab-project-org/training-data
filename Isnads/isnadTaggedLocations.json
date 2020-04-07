@@ -33,12 +33,17 @@
 {"text":"Shamela_0012129","taggedSections":[[5265,5806],[7882,8405],[9572,10073],[11850,123510]],"fullURI":"0276IbnQutaybaDinawari.Macarif.Shamela0012129-ara1.completed","annotator":"SP Loynes","comment":"","timeSpent":[3]}
 {"text":"JK_001462","taggedSections":[[110,1111],[7483,8484]],"fullURI":"0403IbnFaradi.TarikhCulamaAndalus.JK001462-ara1.mARkdown","annotator":"HRH","comment":"","timeSpent":[5]}
 {"text":"Shamela_0023764","taggedSections":[[9958,1046],[70267,70577],[100208,100709],[161378,161879]],"fullURI":"0463KhatibBaghdadi.TarikhBaghdad.Shamela0023764-ara1.completed","annotator":"SP Loynes","comment":"Isnad dense text with many sections describing who individuals narrated from and to","timeSpent":[7.5]}
-{"text":"Shamela_0006686","taggedSections":[],"fullURI":"0412Sulami.TabaqatSufiya.Shamela0006686-ara1.completed","annotator":"HRH","comment":"","timeSpent":[]}
+{"text":"Shamela_0006686","taggedSections":[[79-1180],[1590-2091],[6027-6528]],"fullURI":"0412Sulami.TabaqatSufiya.Shamela0006686-ara1.completed","annotator":"HRH","comment":"","timeSpent":[7.5]}
 {"text":"Shamela_0023775","taggedSections":[[3546-4047],[9579-10080],[23657-24158],[26632-27133]],"fullURI":"0255Jahiz.Hayawan.Shamela0023775-ara1.completed","annotator":"SP Loynes","comment":"As expected, very few isnads (e.g., hadathna/hadathni occur less than 100x), but lots of simple quotations. Found one section with a bunch of isnads, some with no initial tranmission terms","timeSpent":[2]}
 {"text":"Shamela_0023775","taggedSections":[],"fullURI":"0255Jahiz.Hayawan.Shamela0023775-ara1.completed","annotator":"SP Loynes","comment":"","timeSpent":[]}
-{"text":"Shamela_0012406","taggedSections":[],"fullURI":"0597IbnJawzi.Muntazam.Shamela0012406-ara1.completed","annotator":"HRH","comment":"","timeSpent":[]}
-{"text":"JK_000213","taggedSections":[],"fullURI":"0526IbnAbiYacla.TabaqatHanabila.JK000213-ara1.completed","annotator":"HRH","comment":"","timeSpent":[]}
-{"text":"Shamela_0012317","taggedSections":[],"fullURI":"0561Samcani.Ansab.Shamela0012317-ara1.mARkdown","annotator":"HRH","comment":"","timeSpent":[]}
+{"text":"Shamela_0012406","taggedSections":[[2800-3201],[13824-14325],[37263-37764],[76860-77361]],"fullURI":"0597IbnJawzi.Muntazam.Shamela0012406-ara1.completed","annotator":"HRH","comment":"","timeSpent":[5]}
+{"text":"JK_000213","taggedSections":[[743-1244],[2960-3461],[4270-4771],[8116-8617]],"fullURI":"0526IbnAbiYacla.TabaqatHanabila.JK000213-ara1.completed","annotator":"HRH","comment":"","timeSpent":[7.5]}
+{"text":"Shamela_0012317","taggedSections":[[780-1781],[15190-15391],[28450-28651],[36732-36933],[40766-40967],[61305-61505]],"fullURI":"0561Samcani.Ansab.Shamela0012317-ara1.completed","annotator":"HRH","comment":"","timeSpent":[5]}
 {"text":"Shamela0000041","taggedSections":[[4950-5451],[37619-38120],[47441-47942],[70654-71155]],"fullURI":"0510IbnMascudBaghawi.Tafsir.Shamela0000041-ara1.completed","annotator":"SP Loynes","comment":"Dense with isnads and some sections with commentary on veracity of isnads. Lots of simple quotoation also","timeSpent":[5]}
 {"text":"Shamela0012396","taggedSections":[[4640-5141],[25221-25722],[35748-36249],[51213-51714]],"fullURI":"0421Miskawayh.Tajarib.Shamela0012396-ara1.completed","annotator":"SP Loynes","comment":"In the sections which I tagged this text had no isnads at all; there were a handful of single transmission examples.","timeSpent":[1.5]}
+{"text":"Shamela_0011269","taggedSections":[],"fullURI":"0330Sirafi.Rihla.Shamela0011269-ara1.completed","annotator":"HRH","comment":"","timeSpent":[]}
+{"text":"Shamela_0023789","taggedSections":[],"fullURI":"0328IbnCabdRabbihi.CiqdFarid.Shamela0023789-ara1.completed","annotator":"HRH","comment":"","timeSpent":[]}
+{"text":"Shia_003675Vols","taggedSections":[],"fullURI":"0314IbnActhamKufi.Futuh.Shia003675Vols-ara1.completed","annotator":"HRH","comment":"","timeSpent":[]}
+{"text":"Shamela_0001601","taggedSections":[],"fullURI":"0335Suli.AdabKuttab.Shamela0001601-ara1.completed","annotator":"HRH","comment":"","timeSpent":[]}
+{"text":"Shamela0000515","taggedSections":[],"fullURI":"0335Suli.AkhbarAbiTamam.Shamela0000515-ara1.completed","annotator":"HRH","comment":"","timeSpent":[]}
 {"text":"","taggedSections":[],"fullURI":"","annotator":"","comment":"","timeSpent":[]}
