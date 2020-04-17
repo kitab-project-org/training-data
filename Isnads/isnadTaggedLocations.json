@@ -50,10 +50,9 @@
 {"text":"Shamela_0023680","taggedSections":[[1288-1789],[8138-8639],[17471-17972],[21525-22026]],"fullURI":"0207Waqidi.Maghazi.Shamela0023680-ara1.completed","annotator":"SP Loynes","comment":"Fairly isnad dense. In the 1,000 lines there were approx. 30 isnads missed w/ clear markers; probably around 10% of total","timeSpent":[5]}
 {"text":"Shamela_0006905","taggedSections":[[46-547],[1592-2093],[2448-2949],[3029-3530]],"fullURI":"0216Ibnquraybasmaci.Asmaciyat.Shamela0006905-ara1.completed","annotator":" SP Loynes","comment":"No isnads, only 1 erroneous autotag","timeSpent":[1]}
 {"text":"Shamela_0007867","taggedSections":[[824-1325],[2386-2887],[5435-5936],[6321-6822]],"fullURI":"0296IbnMuctazz.TabaqatShucara.Shamela_0007867-ara1.completed","annotator":"SP Loynes","comment":"Several isnads missed w/ markers; ","timeSpent":[3]}
-{"text":"Shamela_0006896","taggedSections":[],"fullURI":"0429AbuMansurThacalibi.ThimarQulub.Shamela0006896-ara1.mARkdown","annotator":"HRH","comment":"","timeSpent":[]}
-{"text":"Shamela_0010283","taggedSections":[],"fullURI":"0733Nuwayri.NihayaArab.Shamela0010283-ara1.completed","annotator":"HRH","comment":"","timeSpent":[]}
+{"text":"Shamela_0006896","taggedSections":[[419-920],[7170-7671],[11870-12871]],"fullURI":"0429AbuMansurThacalibi.ThimarQulub.Shamela0006896-ara1.mARkdown","annotator":"HRH","comment":"This book is a kind of dictionary explaining about some Arabic idioms. There was just one case that needed to be tagged.","timeSpent":[2]}
+{"text":"Shamela_0010283","taggedSections":[[5724-6125],[12110-12511],[61464-61865],[88561-88962],[113707-114108]],"fullURI":"0733Nuwayri.NihayaArab.Shamela0010283-ara1.completed","annotator":"HRH","comment":"","timeSpent":[3]}
 {"text":"Shamela_0004445","taggedSections":[],"fullURI":"0774IbnKathir.Bidaya.Shamela0004445-ara1.completed","annotator":"HRH","comment":"","timeSpent":[]}
-{"text":"Shamela_0023604","taggedSections":[],"fullURI":"0774IbnKathir.TafsirQuran.Shamela0023604-ara1","annotator":"HRH","comment":"","timeSpent":[]}
 {"text":"Shamela_0006667","taggedSections":[[93-594],[3997-4998],[30327-30828],[41579-42080]],"fullURI":"0845Maqrizi.Suluk.Shamela0006667-ara1.completed","annotator":"SPL","comment":"No isnads in the 1000 lines I checked, only a few erroneous auto tags","timeSpent":[1]}
 {"text":"JK007062","taggedSections":[],"fullURI":"0902Sakhawi.Buldaniyyat.JK007062-ara1.completed","annotator":"SPL","comment":"","timeSpent":[]}
 {"text":"","taggedSections":[],"fullURI":"","annotator":"","comment":"","timeSpent":[]}
