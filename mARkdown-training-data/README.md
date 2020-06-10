@@ -1,4 +1,4 @@
-#**Description of mARkdown training-data schemes**
+# **Description of mARkdown training-data schemes**
 
 If these schemes are used correctly they will highlight in text
 
@@ -18,4 +18,5 @@ If these schemes are used correctly they will highlight in text
 
 
 If the annotation scheme is correctly applied, the 'Test patterns' should appear in EditPad Pro as below:
+
 ![Sample annotation](https://github.com/kitab-project-org/training-data/blob/master/mARkdown-training-data/Sample%20annotation.png)
