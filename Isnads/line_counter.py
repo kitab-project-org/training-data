@@ -12,6 +12,7 @@ Created on Mon Jul 27 10:16:43 2020
 
 import re
 
+
 data = open("isnadTaggedLocations.json", encoding='utf-8')
 line_ranges = re.findall('"taggedSections":(.+),"full', data.read())
 data.close()
@@ -37,18 +38,23 @@ for pairs in line_ranges:
         error_list.append("| approx line no: " + str(text_no) + " | list of pairs : " + pairs + " | total: " + str(per_text_count) +" | ")    
     
 # Printing results to console
-print("number of lines per text:" + str(per_text_diff))
-print()
-print()
+f = open("count_out.txt", "a")
+print("number of lines per text:" + str(per_text_diff), file=f)
+print("", file=f)
+print("", file=f)
 try: 
-    print("check errors in json!: ")
+    print("check errors in json!: ", file=f)
     for error in error_list:
-        print(str(error))
+        print(str(error), file=f)
 except IndexError:
-    print("no errors found in json")
-print()
-print()    
-print("total lines evaluated:" + str(total_line))
+    print("no errors found in json", file=f)
+print("", file=f)
+print("", file=f)    
+print("total lines evaluated:" + str(total_line), file=f)
+print("", file=f)
+f.close()
+
+
     
         
 
