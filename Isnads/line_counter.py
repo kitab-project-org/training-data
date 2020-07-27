@@ -12,7 +12,7 @@ Created on Mon Jul 27 10:16:43 2020
 
 import re
 
-data = open("C:/Users/mathe/Documents/Kitab QNL/Github repos/training-data/Isnads/isnadTaggedLocations.json", encoding='utf-8')
+data = open("isnadTaggedLocations.json", encoding='utf-8')
 line_ranges = re.findall('"taggedSections":(.+),"full', data.read())
 data.close()
 
