@@ -88,7 +88,7 @@ Add to this file any isnads for which queries arise when tagging.
 The data in this repository was created using [OpenITI texts](https://github.com/openiti "to see openITI repositories"), and the isnads automatically tagged using a model that is intended for tagging isnads in a broad range of texts (that is, not just hadith). The model is being developed by computer science student Ryan Muther.
 
 ### **Annotators/evaluators**
-Ryan Muther's isnad model relies on supervised training data (and the main purpose of this repository is for the version control of this training data). The annotators involved in tagging isnads for this project are as follows:
+Ryan Muther's isnad model relies on training data (and the main purpose of this repository is for the version control of this training data). The annotators involved in tagging isnads for this project are as follows:
 
   Mathew Barber  
   Hamid Reza Hakimi  
