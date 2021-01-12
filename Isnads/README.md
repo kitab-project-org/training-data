@@ -82,3 +82,21 @@ Add to this file any isnads for which queries arise when tagging.
 **For each isnad provide:** the text URI, starting line of queried isnad, excerpt of Arabic text with the proposed isnad tags inserted and a short comment
 
 **Feedback:** During each discussion session, feedback will be provided on the queried excerpts. If the tagging was corrected, the corrected excerpt will be found in the 'Corrected excerpt' column of the csv.
+
+## **Acknowledgements**
+
+The data in this repository was created using [OpenITI texts](https://github.com/openiti "to see openITI repositories"), and the isnads automatically tagged using a model that is intended for tagging isnads in a broad range of texts (that is, not just hadith). The model is being developed by computer science student Ryan Muther.
+
+### **Annotators/evaluators**
+Ryan Muther's isnad model relies on supervised training data (and the main purpose of this repository is for the version control of this training data). The annotators involved in tagging isnads for this project are as follows:
+
+Mathew Barber
+Hamid Reza Hakimi
+Ahmed Hassan
+Kevin Jacques
+Simon Loynes
+Lorenz Nigst
+Sarah Savant
+
+isnadTaggedLocations.json identifies the specific involvement of each team member. Not only did these annotators tag isnads within a broad range of texts but they discussed the process of identifying and tagging isnads in a weekly meeting. This meeting and the annotation was invaluable for developing the model to tag isnads.
+
