@@ -6,4 +6,4 @@ The alignments were created by aligning the pages of the two texts of a pair in 
 
 In each folder, you will also find a CSV of the aligned sections by id number, which is useful for finding issues in the process of inserting markers but should be relevant to annotation.
 
-Please not that when you annotate texts, you should record which lines you annotated in EvaluationLocations in this directory's parent directory (or a similarly formatted file.)
+Please note that when you annotate texts, you should record which lines you annotated in EvaluationLocations in this directory's parent directory (or a similarly formatted file.)
