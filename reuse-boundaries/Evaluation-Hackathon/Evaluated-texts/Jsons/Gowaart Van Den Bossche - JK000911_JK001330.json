@@ -2,7 +2,7 @@
  "b1": "JK000911",
  "b2": "JK001330",
  "annotator": "Gowaart Van Den Bossche",
- "lines_evaluated_b1": [102428, 112777] [60534, 60537]
- "lines_evaluated_b2": [30663, 35183] [77713, 77716]
+ "lines_evaluated_b1": [[102428, 112777], [60534, 60537]],
+ "lines_evaluated_b2": [[30663, 35183], [77713, 77716]],
  "comments": "The first alignment I looked at was a complex one in which Ibn Taghribirdi intervenes in the quotation (which is itself a little on the paraphrase side), I have distinguished this by splitting the alignment into three short parts, but this may become difficult to work with; alignments 68 and 69 were variants of the Fatimid caliph's name, appearing in non-related parts of the texts so I deleted them, similarly alignment 52 (b1 [60534, 60537], b2 [77713, 77716]) was an entirely unrelated list of names; alignment 45 is a very partial alignment of two obituaries (just the names really), not sure whether this is really valuable but I have left it intact"
 } 

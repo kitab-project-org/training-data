@@ -2,7 +2,7 @@
  "b1": "GVDB20200120",
  "b2": "LMN20200820",
  "annotator": "Gowaart Van Den Bossche",
- "lines_evaluated_b1": [220, 222], [223, 238] [336, 345] [435, 444] [470, 477] [479, 493] [551, 559] [675, 693] [751, 762] [895, 899] [1016, 1028]
- "lines_evaluated_b2": [446, 469], [485, 665] [901, 963] [1371, 1380] [1465, 1505] [1769, 1896] [2633, 2652] [2849, 2866] [3401, 3514] [3992, 4008]
+ "lines_evaluated_b1": [[220, 222], [223, 238], [336, 345], [435, 444], [470, 477], [479, 493], [551, 559], [675, 693], [751, 762], [895, 899], [1016, 1028]],
+ "lines_evaluated_b2": [[446, 469], [485, 665], [901, 963], [1371, 1380], [1465, 1505], [1769, 1896], [2633, 2652], [2849, 2866], [3401, 3514], [3992, 4008]],
  "comments": "lines in b1 are often very long, as they are full paragraphs - hence the big differences between line ranges evaluated between b1 and b2; alignment 27 is a heavily rearranged list of names and functions, followed by a more faithfully copied poem; I have consolidated continuous alignments into one long alignment, in most cases these are documents or poetry that are copied verbatim from b1 to b2; I think generally passim catches b2's heavy reworking in cases where it is followed or following a verbatim quoted document, but discards other passages that may share some words but which have been heavily edited in b2"
 } 
