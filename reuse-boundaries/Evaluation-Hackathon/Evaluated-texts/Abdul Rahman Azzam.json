@@ -2,7 +2,7 @@
  "b1": "JK00001",
  "b2": "Sham19Y0017817",
  "annotator": "Abdul Rahman Azzam",
- "lines_evaluated_b1": [],
- "lines_evaluated_b2": [],
+ "lines_evaluated_b1": [[12181,12188],[9678, 9693], [78274, 78292],[9853,9858]],
+ "lines_evaluated_b2": [[523, 528], [15961, 15982], [3562, 3581], [9369,9374]],
  "comments": ""
 }
