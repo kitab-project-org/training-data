@@ -1,0 +1,95 @@
+Annotation record file changes:
+
+ "JK000001" in the text_1 field of the alignment annotation file 
+  had one too few 0.
+
+ Merged the tagged extants in Mathew and Gowaart's
+  annotations into one line in the json for the pair JK000911_JK001330
+
+ Line 15715 in Shamela0011680 with an end tag wasn't marked
+  as tagged despite having a manual opening tag on it
+ 
+ Line 6743 in text Shamela0011780 with an end tag wasn't marked
+  as tagged despite having a manual end tag on it
+
+Individual text pair notes:
+
+ 0730ShaficIbnCali.HusnManaqib.LMN20200820-ara1.completed contains
+  two start points for alignment 45. The second (line 3513) has
+  been replaced with an end tag
+
+ An end tag on line 9692 in text JK000001 was missing the final @ sign
+
+ @ALB@145001@ was mistyped as @145001@ALB@ on line 102430 of JK000911.
+  Might be a text order issue? Unclear exactly what happened. Perhaps
+  check if the marker is still in the right place.
+
+Notes on JK001259-ara1_Shamela0002864-ara1:
+
+ Removed an end tag from line 39 of JK001259 that was technically
+  from the alignment of the first section with metadata
+ 
+ Missing @ added to the beginning tag of alignment 210 of JK001259
+  (line 59)
+ 
+ @ALB@150@ mistyped as @150@ALB@ on line 73 of JK001259
+
+ @ALB@267@ mistyped as @267@ALB@ on line 233 of JK001259
+
+ @ALB@89@ mistyped as @89@ALB@ on line 306 of JK001259
+
+ @ALB@64@ mistyped as @64@ALB@ on line 324 of JK001259
+
+ Removed automatic alignment tags @ALIGN@B/E@184@ as it was in the
+  middle of a human tag, making the human tag unreadable 
+  (questionable decision)
+
+ @ALB@106001@ mistyped as @106001@ALB@ on line 755 of JK001259
+ 
+ Removed extraneous space in @ALE@ 106001@ and converted extra end tag
+  to begin tag on line 15236 of Shamela0002864
+
+ A lot of these tags are backwards. 
+  Possibly a word order issue with combined English and Arabic text orders.
+  Regexes to fix:
+  Find:    @(\d+)@ALE@   @(\d+)@ALB@ 
+  Replace: @ALE@\1@      @ALB@\1@
+ Edit: this fixed some but not all issues. 
+ 
+ Second @ALB@106@ tag in Shamela0002864 converted to end tag on line 15236.
+
+ Despite these changes, the end tags for 19 alignments in the pair
+  JK001259-ara1_Shamela0002864-ara1 are missing endpoints in at least one
+  text. My guess is that there's a word order issue with the tags. Does
+  someone else want to give this a look?
+ 
+ Duplicate @ALB@103001@ on line 288 of JK001259 replace with @ALE@103001@
+  I may have changed too much on line 288 of that file. There was an
+  automatic tag throwing off the manual tags, so I had to remove an
+  auto-tag. Someone might want to give that a look?
+ 
+ Why is alignment 221 still automatic tags? It seems to be in
+  evaluated regions in both texts in JK001259-ara1_Shamela0002864-ara1
+
+ First instance of @ALE@76001@ replaced with begin tag on line 1594`
+  in Shamela0002864-ara1.
+ 
+ Odd. I got 70 alignments from that pair with only 38 @ALB@ tags. 
+  Were some evaluated alignments left in the automatic tags?
+ 
+Tabari-Tayfur
+
+ Half the alignments (0005-0008)in Tabari appear outside
+  the annotated region, with the last annotated line being 
+  108681 and alignment 5 appearing on line 108693. Were some 
+  annotation markers forgotten? The corresponding alignment in
+  Ibn Tayfur is on line 1715 while the last tagged line is 741.
+ 
+Shamela11680-Shamela11780
+
+ Removed end tag of opening alignment in Shamela0011680
+  since it doesn't technically count due to being in the metadata
+
+ Replaced @ALB@7100.@ with @ALB@71003@ on line 241 in Shamela0011780
+ 
+Shia001131-EShia0071536

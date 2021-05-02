@@ -36,7 +36,7 @@
 
 #META#Header#End#
 
-PageV00P000@ALIGN@E@88@
+PageV00P000
 ### |EDITOR|
 # تعريف
 # بسم الله الرحمن الرحيم عزيزى القارئ..
