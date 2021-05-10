@@ -1,8 +1,0 @@
-{
- "b1": "Shia001131Vols",
- "b2": "EShia0071536",
- "annotator": "Aslisho Qurboniev",
- "lines_evaluated_b1": [3068, 3967],
- "lines_evaluated_b2": [2812,7198],
- "comments": "please note that there are embedded tags such as @ALB@19001@ and ALB@19002@; I have also ignored alignments with the editorial sections - (book2 is heavily quoted in the footnotes of book1)"
-}

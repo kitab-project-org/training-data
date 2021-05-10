@@ -1,4 +1,0 @@
-These four files contain human and passim tags for both Maqrizi's Muqaffa and Itticaz.
-
-The human start and end tags are of the form @ALB@<id>@ and @ALE@<id>@ model tags contain _Auto after the B or E. 
-These are subject to change per reviewer request.
