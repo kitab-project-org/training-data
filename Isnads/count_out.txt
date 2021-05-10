@@ -1,0 +1,25 @@
+number of lines per text:[3281, 2226, 1951, 1369, 2858, 6880, 398, 398, 1198, 698, 1098, 598, 1098, 598, 598, 998, 598, 598, 1098, 598, 2000, 2000, 1100, 1907, 2003, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2062, 2000, 1396, 2100, 2000, 0, 1900, 2000, 1999, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 0, 2500, 0, 0]
+
+
+check errors in json!: 
+| approx line no: 6 | list of pairs : [[41,6922]] | total: 6880 | 
+| approx line no: 38 | list of pairs : [] | total: 0 | 
+| approx line no: 54 | list of pairs : [] | total: 0 | 
+| approx line no: 56 | list of pairs : [] | total: 0 | 
+| approx line no: 57 | list of pairs : [] | total: 0 | 
+
+
+total lines evaluated:94104
+
+number of lines per text:[3281, 2226, 1951, 1369, 2858, 6880, 398, 398, 1198, 698, 1098, 598, 1098, 598, 598, 998, 598, 598, 1098, 598, 2000, 2000, 1100, 1907, 2003, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2062, 2000, 1396, 2100, 2000, 1900, 2000, 1999, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 0, 2500, 0, 0]
+
+
+check errors in json!: 
+| approx line no: 6 | list of pairs : [[41,6922]] | total: 6880 | 
+| approx line no: 53 | list of pairs : [] | total: 0 | 
+| approx line no: 55 | list of pairs : [] | total: 0 | 
+| approx line no: 56 | list of pairs : [] | total: 0 | 
+
+
+total lines evaluated:94104
+
