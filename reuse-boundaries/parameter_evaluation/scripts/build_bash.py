@@ -1,3 +1,6 @@
+"""Build a bash script for each text pair that
+will run passim with all permutations of a set of parameters."""
+
 from itertools import product
 
 import os
