@@ -2,13 +2,10 @@
 will run passim with all permutations of a set of parameters,
 extract the relevant data from each run in a csv file,
 remove the raw passim data, and push the csv file to GitHub
-
 Include only bash scripts for each text pair + parameters for which no csv file exists in output folder!
-
 NB: csv files are stored in the output/csv folder, and have file names like this:
 GVDB20200120_LMN20200820_3_7_25_3.csv
 (BK1_BK2_MINMATCH_MINALIGN_GAP_N.csv)
-
 TO DO:
 * after json files were added to the `input` folder,
   use the content of the input folder as the source for the text_pairs list.
@@ -78,6 +75,23 @@ for f in os.listdir(input_folder):
             text_pairs.append(f)
 print(text_pairs)
 
+
+# copy the passim input files to the input folder
+original = "/home/admin-kitab/Documents/OpenITI/instantiations/2021/passim/Feb/pri"
+if overwrite:
+    print("input folder exists?", os.path.exists(input_folder))
+    shutil.rmtree(input_folder)
+    print("input folder exists after removing it?", os.path.exists(input_folder))
+    for pair in text_pairs:
+        textinfolder = os.path.join(input_folder, pair)
+        os.makedirs(textinfolder)
+        for fn in os.listdir(original):
+            if fn.split("-")[0] in pair.split("_"):
+                # copy json file to the appropriate input directory
+                fp = os.path.join(original, fn)
+                shutil.copyfile(fp, os.path.join(textinfolder, fn))
+                
+
 # build bash script file for each text pair:
 for f in text_pairs:
     print("building bash scripts for", f)
@@ -117,4 +131,3 @@ for f in text_pairs:
     with open(f"{bash_folder}/{f}.sh", mode="w", encoding="utf-8") as file:
         file.write("\n".join(bash))
     print(f"-> {i} passim runs written to bash script.")
-
