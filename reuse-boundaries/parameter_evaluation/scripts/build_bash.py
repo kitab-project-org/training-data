@@ -22,26 +22,35 @@ from itertools import product
 
 import os
 
-OVERWRITE = False # set to True if you want to overwrite existing csv files!
+print("sanity")
+
+OVERWRITE = True # set to True if you want to overwrite existing csv files!
 
 # BUILD LISTS OF PARAMETER RANGES: 
-min_match_l = list(range(3,11, 1))
-min_align_l = list(range(7, 25, 1))
-n_l = list(range(3, 7, 1))
-gap_l = list(range(25, 201, 25))
+min_match_l = list(range(2, 11, 2))
+min_align_l = list(range(30, 71, 10))
+n_l = list(range(12, 37, 8))
+gap_l = list(range(100, 801, 200))
+n_gram_type = ["--floating-ngrams", ""]
+
+# defaults:
+max_df = 100
+min_df = 2
+
 
 # script used to extract data from parquet files to csv:
 to_csv_script = "scripts/1_align-stats_CM-WM_seriatim.py" # TO DO: replace with Mathew's script
 
 # build path to the git repo and other paths:
 root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
-#print(root)
+print(root)
 
 # folders to be evaluated:
 folder1 = os.path.join(root, r"reuse-boundaries/Evaluation-Hackathon/Evaluation-Hackathon-Marked")
 folder2 = os.path.join(root, r"reuse-boundaries/Evaluated")
 eval_folders = [folder1, folder2]
 exclude = ("JK000001", )  # text pairs starting with these text ids will be left out of selection
+
 
 # build paths to relevant folders:
 output_folder = os.path.join(root, r"reuse-boundaries/parameter_evaluation/output")
@@ -51,40 +60,50 @@ bash_folder = os.path.join(root, r"reuse-boundaries/parameter_evaluation/bash_sc
 for f in [output_folder, csv_folder, input_folder, bash_folder]:
     if not os.path.exists(f):
         os.makedirs(f)
+        with open(f+"/.dummy") as file:
+            file.write("")
 
 # build list of the text pairs, based on the folder names of the manually evaluated texts:
 text_pairs = []
-for folder in eval_folders:
-    for f in os.listdir(folder):
-        if f.startswith(exclude):
+##for folder in eval_folders:
+##    for f in os.listdir(folder):
+for f in os.listdir(input_folder):
+    print(f)
+    pth = os.path.join(input_folder, f)
+    if os.path.isdir(pth):
+        if f.startswith(exclude) or f.endswith(exclude):
             print("!! excluding", f, "!!")
         else:
             #print(f)
-            pth = os.path.join(folder, f)
-            if os.path.isdir(pth):
-                text_pairs.append(f)
+            
+            text_pairs.append(f)
+print(text_pairs)
 
 # build bash script file for each text pair:
 for f in text_pairs:
     print("building bash scripts for", f)
     bash = []
     i = 0
-    for mm, ma, gap, n in product(min_match_l, min_align_l, gap_l, n_l):
+    for mm, ma, gap, n, nt in product(min_match_l, min_align_l, gap_l, n_l, n_gram_type):
         #print(i, mm, ma, gap, n)
-        outfolder_name =  f"{f}_{mm}_{ma}_{gap}_{n}"
+        if nt:
+            outfolder_name =  f"{mm}_{ma}_{gap}_{n}_float_{f}"
+        else:
+            outfolder_name =  f"{mm}_{ma}_{gap}_{n}_nonfl_{f}"
         outfolder = os.path.join(output_folder, f, outfolder_name)
         csv_outfp = os.path.join(csv_folder, outfolder_name+".csv")
         if OVERWRITE or not os.path.exists(csv_outfp):
+            #print(outfolder_name)
             i+=1
             
-            # run passim:
-            cmd =  f"passim {input_folder}/{f} {outfolder} --pairwise --maxDF 100 "
-            cmd += f"--min-match {mm} --min-align {ma} --gap {gap} -n {n}"
+            # run passim (and time its execution):
+            cmd =  f"time passim {input_folder}/{f} {outfolder} --pairwise --maxDF 100 "
+            cmd += f"--min-match {mm} --min-align {ma} --gap {gap} -n {n} {nt}"
             #print(cmd)
             bash.append(cmd)
             
             # extract relevant data from passim output and create csv file:
-            cmd =  f"python3 {to_csv_script} {outfolder}/align.json {csv_folder}"
+            cmd =  f"time python3 {to_csv_script} {outfolder}/align.json {csv_folder}"
             bash.append(cmd)
             
             # remove raw passim output:
