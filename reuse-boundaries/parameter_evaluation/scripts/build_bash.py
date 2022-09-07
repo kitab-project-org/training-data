@@ -22,8 +22,6 @@ from itertools import product
 
 import os
 
-print("sanity")
-
 OVERWRITE = True # set to True if you want to overwrite existing csv files!
 
 # BUILD LISTS OF PARAMETER RANGES: 
@@ -38,12 +36,13 @@ max_df = 100
 min_df = 2
 
 
-# script used to extract data from parquet files to csv:
-to_csv_script = "scripts/1_align-stats_CM-WM_seriatim.py" # TO DO: replace with Mathew's script
-
 # build path to the git repo and other paths:
 root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
 print(root)
+
+# script used to extract data from parquet files to csv:
+to_csv_script = os.path.join(root, "reuse-boundaries/parameter_evaluation/scripts/1_align-stats_CM-WM_seriatim.py")
+
 
 # folders to be evaluated:
 folder1 = os.path.join(root, r"reuse-boundaries/Evaluation-Hackathon/Evaluation-Hackathon-Marked")
@@ -60,7 +59,7 @@ bash_folder = os.path.join(root, r"reuse-boundaries/parameter_evaluation/bash_sc
 for f in [output_folder, csv_folder, input_folder, bash_folder]:
     if not os.path.exists(f):
         os.makedirs(f)
-        with open(f+"/.dummy") as file:
+        with open(f+"/.dummy", mode="w") as file:
             file.write("")
 
 # build list of the text pairs, based on the folder names of the manually evaluated texts:
@@ -110,11 +109,11 @@ for f in text_pairs:
             bash.append(f"rm -rf {outfolder}")
             
             # push csv to GitHub:
-            bash.append(f"git add {csv_folder}")
-            bash.append(f"git commit -m 'ran passim {f} mm {mm} ma {ma} gap {gap} n {n}'")
-            bash.append("git pull origin master")
-            bash.append("git push origin master")
-            
+            #bash.append(f"git add {csv_folder}")
+            #bash.append(f"git commit -m 'ran passim {f} mm {mm} ma {ma} gap {gap} n {n}'")
+            #bash.append("git pull origin master")
+            #bash.append("git push origin master")
+    
     with open(f"{bash_folder}/{f}.sh", mode="w", encoding="utf-8") as file:
         file.write("\n".join(bash))
     print(f"-> {i} passim runs written to bash script.")
