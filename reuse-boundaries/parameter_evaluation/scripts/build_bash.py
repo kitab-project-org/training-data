@@ -18,6 +18,7 @@ TO DO:
 from itertools import product
 
 import os
+import shutil
 
 OVERWRITE = True # set to True if you want to overwrite existing csv files!
 
@@ -78,19 +79,20 @@ print(text_pairs)
 
 # copy the passim input files to the input folder
 original = "/home/admin-kitab/Documents/OpenITI/instantiations/2021/passim/Feb/pri"
-if overwrite:
+if OVERWRITE:
     print("input folder exists?", os.path.exists(input_folder))
     shutil.rmtree(input_folder)
     print("input folder exists after removing it?", os.path.exists(input_folder))
     for pair in text_pairs:
         textinfolder = os.path.join(input_folder, pair)
         os.makedirs(textinfolder)
+        ids = set(pair.split("_"))
         for fn in os.listdir(original):
-            if fn.split("-")[0] in pair.split("_"):
+            if fn.split("-")[0] in ids:
                 # copy json file to the appropriate input directory
                 fp = os.path.join(original, fn)
                 shutil.copyfile(fp, os.path.join(textinfolder, fn))
-                
+                print(fp, ">", os.path.join(textinfolder, fn))
 
 # build bash script file for each text pair:
 for f in text_pairs:
@@ -116,7 +118,7 @@ for f in text_pairs:
             bash.append(cmd)
             
             # extract relevant data from passim output and create csv file:
-            cmd =  f"time python3 {to_csv_script} {outfolder}/align.json {csv_folder}"
+            cmd =  f"time python {to_csv_script} {outfolder}/align.json {csv_folder}"
             bash.append(cmd)
             
             # remove raw passim output:
