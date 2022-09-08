@@ -99,7 +99,7 @@ if OVERWRITE:
 # build bash script file for each combination of parameters:
 #bash = []
 outfolder = os.path.join(output_folder, "passim_output")
-bash = [f"rm -rf {outfolder}",] # start bash script by removing any temporary passim output folders
+bash = [f"rm -rf {outfolder}", "rm log.tx", "touch log.txt"] # start bash script by removing any temporary passim output folders
 i = 0
 for mm, ma, gap, n, nt in product(min_match_l, min_align_l, gap_l, n_l, n_gram_type):
     i += 1
@@ -111,12 +111,12 @@ for mm, ma, gap, n, nt in product(min_match_l, min_align_l, gap_l, n_l, n_gram_t
     #outfolder = os.path.join(output_folder, f"{outfolder_name_args}_all")
     # run passim (and time its execution):
     cmd =  f"time passim {input_folder}/all {outfolder} --pairwise --maxDF {max_df} "
-    cmd += f"--min-match {mm} --min-align {ma} --gap {gap} -n {n} {nt}"
+    cmd += f"--min-match {mm} --min-align {ma} --gap {gap} -n {n} {nt} >> log.txt"
     #print(cmd)
     bash.append(cmd)
 
     # extract relevant data from passim output and create csv file:
-    cmd =  f"time python {to_csv_script} {outfolder}/align.json {csv_folder}/{outfolder_name_args}"
+    cmd =  f"time python {to_csv_script} {outfolder}/align.json {csv_folder}/{outfolder_name_args} >> log.txt"
     bash.append(cmd)
 
     # remove raw passim output:
