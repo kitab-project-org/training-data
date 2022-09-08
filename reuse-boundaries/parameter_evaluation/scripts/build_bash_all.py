@@ -90,7 +90,7 @@ if OVERWRITE:
         os.makedirs(textinfolder)
         ids = set(pair.split("_"))
         for fn in os.listdir(original):
-            if fn.split("-")[0] in ids:
+            if fn.split("-")[0].replace("BK1", "") in ids:
                 # copy json file to the appropriate input directories
                 fp = os.path.join(original, fn)
                 shutil.copyfile(fp, os.path.join(textinfolder, fn))
