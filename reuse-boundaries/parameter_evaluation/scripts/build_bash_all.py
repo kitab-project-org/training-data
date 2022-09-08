@@ -129,7 +129,7 @@ for mm, ma, gap, n, nt in product(min_match_l, min_align_l, gap_l, n_l, n_gram_t
     #bash.append("git push origin master")
 
 bash = [x.replace("XXXXXX", str(i)) for x in bash]
-with open(f"{bash_folder}/{f}.sh", mode="w", encoding="utf-8") as file:
+with open(f"{bash_folder}/all.sh", mode="w", encoding="utf-8") as file:
     file.write("\n".join(bash))
 print(f"-> {i} passim runs written to bash script.")
 print("first line:")
