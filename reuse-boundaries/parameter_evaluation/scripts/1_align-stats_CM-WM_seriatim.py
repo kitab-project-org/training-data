@@ -16,6 +16,10 @@ import re
 import shutil
 import sys
 
+import findspark
+findspark.init()
+
+
 from pyspark.sql import SparkSession
 from pyspark.sql.types import *
 import pyspark.sql.functions as F
@@ -52,7 +56,6 @@ def match_per(match, length):
 
 def get_tok_pos(ms, ms_txt, local_ch_offset):
     local_tok_offset = 0
-    print(ms_txt)
 
     for i in ms_txt[:local_ch_offset]:
         if i == ' ':
@@ -64,6 +67,15 @@ def get_tok_pos(ms, ms_txt, local_ch_offset):
 
 if __name__ == '__main__':
     print(sys.argv)
+    if not os.path.exists(sys.argv[1]):
+        print("passim did not produce output. Saving empty csv file")
+        text_pair = os.path.basename(os.path.dirname(os.path.dirname(sys.argv[1])))
+        t1 = text_pair.split("_")[0]
+        header = "begin\tbegin2\tend\tend2\tgid\tgid2\tid\tid2\tmatches\ts1\ts2\tseq\tseq2\tuid\tuid2\tbw1\tew1\tbw2\tew2\tch_match\talign_len\tmatches_percent\tw_match\tseries_b1\tseries_b2\n"
+        os.makedirs(os.path.join(sys.argv[2], t1))
+        with open(os.path.join(sys.argv[2], t1, text_pair+".csv"), mode="w", encoding="utf-8") as file:
+            file.write(header)
+        sys.exit()
     # if len(sys.argv) != 2:
     #     print("Usage: align-stats_CM-WM.py <input> <output>", file=sys.stderr)
     #     exit(-1)
@@ -75,7 +87,7 @@ if __name__ == '__main__':
     ch_match = F.udf(lambda s1, s2: ch_count(s1, s2), IntegerType())
     match_percent = F.udf(lambda match, alig_len: match_per(match, alig_len), FloatType())
     align_len = F.udf(lambda s: len(s), IntegerType())
-    tok_pos = F.udf(lambda local_ch_pos, ms, ms_text: get_tok_pos(ms, ms_text, local_ch_pos))
+    tok_pos = F.udf(lambda ms, ms_text, local_ch_pos: get_tok_pos(ms, ms_text, local_ch_pos))
 
     # check the input format whether it is JSON or parquet
     in_file = sys.argv[1]
@@ -84,7 +96,7 @@ if __name__ == '__main__':
         file_type = "json"
     elif in_file.strip("/").endswith(".parquet"):
         file_type = "parquet"
-        print("f type: ", file_type)
+    print("f type: ", file_type)
 
     # define the matches_percent column
     ch_match_percent_col = F.when(F.col("align_len") == 0, 0.0)\
