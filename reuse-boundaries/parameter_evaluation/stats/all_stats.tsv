@@ -1,0 +1,3 @@
+run	alignments_in_new_total	alignments_in_old_total	average_end_difference	average_start_difference	combined_in_new	end_did_not_change	ends_earlier_in_new	ends_later_in_new	max_end_difference	max_start_difference	median_end_difference	median_start_difference	min_end_difference	min_start_difference	not_in_new	not_in_old	split_in_new	start_did_not_change	starts_earlier_in_new	starts_later_in_new
+6_60_500_36_float	1641	1657	27.95774647887324	12.546948356807512	1	879	487	1190	1385	957	0.0	-1.0	-1108	-519	150	288	72	15	1856	685
+6_60_500_36_nonfl	1487	1657	23.411297071129706	8.717154811715481	1	373	838	1179	1388	960	0.0	-1.0	-1109	-520	202	226	63	307	1452	631
