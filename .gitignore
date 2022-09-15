@@ -1,6 +1,7 @@
 .DS_store
 .token
 reuse-boundaries/parameter_evaluation/bash_scripts/
+reuse-boundaries/parameter_evaluation/output/
 gh_token
 reuse-boundaries/parameter_evaluation/output/passim_output
 ._SUCCESS.crc
