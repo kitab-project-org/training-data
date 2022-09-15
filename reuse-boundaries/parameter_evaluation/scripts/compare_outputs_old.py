@@ -1,6 +1,7 @@
 """
-Compare the outputs of the parameter test runs with the old passim output
-BUT ONLY FOR THE MANUALLY REVIEWED PARTS OF THE TEXT PAIRS!
+Compare the outputs of the parameter test runs with the old passim output.
+
+
 """
 
 import os
@@ -38,30 +39,23 @@ def get_overlap(b_old, e_old, b_new, e_new):
 
            b_old       e_old
     b_new        e_new
-    -------------------------------------------------
-    b_old        e_old
-           b_new          e_new
-    -------------------------------------------------
+
+           b_old       e_old
+                 b_new        e_new
+
            b_old       e_old
     b_new                    e_new
-    -------------------------------------------------
-    b_old                    e_old
-           b_new       e_new
 
+           b_old                    e_old
+                 b_new        e_new
 
     NON_OVERLAP CASES:
 
-    b_old       e_old
+        b_old       e_old
                              b_new        e_new
-    -------------------------------------------------
+                             
                              b_old       e_old
     b_new        e_new
-
-    Args:
-        b_old (str): the offset of the beginning of the alignment in the old srt file
-        e_old (str): the offset of the end of the alignment in the old srt file
-        b_new (str): the offset of the beginning of the alignment in the new srt file
-        e_new (str): the offset of the end of the alignment in the new srt file
     """
     if int(b_new) > int(e_old) or int(b_old) > int(e_new):
         return False
@@ -69,12 +63,7 @@ def get_overlap(b_old, e_old, b_new, e_new):
         return (int(b_new)-int(b_old), int(e_new)-int(e_old))
 
 def make_row_id(row, old_or_new):
-    """Create a unique ID for the alignment
-
-    Args:
-        row (dict): a dictionary representation of a row in the srt file
-        old_or_new (str): either "old" or "new"
-    """
+    """Create a unique ID for the alignment"""
     if old_or_new == "new":
         return "new_{}_b{:04d}_e{:04d}_{}_b{:04d}_e{:04d}".format(row["id"], int(row["begin"]), int(row["end"]),
                                                                   row["id2"], int(row["begin2"]), int(row["end2"]))
@@ -84,7 +73,6 @@ def make_row_id(row, old_or_new):
 
 def get_relevant_srt_data(srt_fp, cols):
     """Create a dictionary from the relevant columns from the srt data
-
     key: milestone in book1
     val: list of dictionaries (json representation of the selected columns
                                for each row that contains this milestone)
@@ -94,7 +82,7 @@ def get_relevant_srt_data(srt_fp, cols):
         srt_reader = DictReader(file, delimiter="\t")
         for row in srt_reader:
             data.append({k: row[k] for k in cols})
-
+            
     # sort by milestone:
     ms_data = dict()
     for row in data:
@@ -111,17 +99,15 @@ def get_relevant_srt_data(srt_fp, cols):
 def log_overlap(b1_or_b2, start_or_end, overlap, old_row_id, new_row_id,
                 ignore_offsets, stats, d):
     """
-    Store the overlap between two alignments in the stats dictionary,
-    and details in the d[etailed_stats] dictionary
+    Store the overlap in the stats dictionary,
+    and details in the d[etailed_stats] dictionar
 
     Args:
-        b1_or_b2 (str): either "B1" or "B2" (for "Book1" and "Book2")
-        start_or_end (str): either "start" or "end"
-        overlap (int): the difference between the end or start offsets of an alignment 
-            in the old and new runs as calculated by the get_overlap function
-            (always new offset minus old offset)
-        old_row_id (str): ID of the alignment in the old run (created by the make_row_id function)
-        new_row_id (str): ID of the alignment in the new run (created by the make_row_id function)
+        b1_or_b2 (str): "B1" or "B2" (for "Book1" and "Book2"
+        start_or_end (str): "start" or "end"
+        overlap (int): the difference between the end or start offsets of an alignment
+        old_row_id (str): ID of the alignment in the old run
+        new_row_id (str): ID of the alignment in the new run
         ignore_offsets (list): list of row ids of which the difference
             in offsets should not be recorded (because they are part
             of either split or conjoined alignments)
@@ -132,7 +118,7 @@ def log_overlap(b1_or_b2, start_or_end, overlap, old_row_id, new_row_id,
     """
     if old_row_id in ignore_offsets or new_row_id in ignore_offsets:
         return
-
+    
     if overlap == 0:
         k = start_or_end+"_did_not_change"
         stats[k] += 1
@@ -152,33 +138,20 @@ def log_overlap(b1_or_b2, start_or_end, overlap, old_row_id, new_row_id,
     k = "all_{}_differences".format(start_or_end)
     stats[k].append(overlap)
 
-
+        
 def find_srt_changes(old_srt_fp, new_srt_fp, stats, detailed_stats,
                      old_cols=["id1", "b1", "e1", "id2", "b2", "e2", "uid1", "uid2"],
                      new_cols=["id", "begin", "end", "id2", "begin2", "end2", "uid", "uid2"]):
     """
     Get stats on the differences between 2 srt files of the same text pair
-
-    Args:
-        old_srt_fp (str): path to the srt file from the old run
-        new_srt_fp (str): path to the srt file from the new run
-        stats (dict): a dictionary containing the summary statistics
-            of the differences between the two runs
-        detailed_stats (dict): a dictionary containing the detailed statistics
-            of the differences between the two runs
-        old_cols (list): list of the column headers of the relevant columns in the old run
-        new_cols (list): list of the column headers of the relevant columns in the new run
     """
-    # Get the relevant columns from the srt files in dictionary format
-    # (key: milestone, value: list of dictionaries, one for each alignment in that milestone)
-
+    #print("find_srt_changes")
     #print("get relevant OLD columns:", old_srt_fp)
     old_data = get_relevant_srt_data(old_srt_fp, old_cols)
-
+    
     #print("get relevant NEW columns:", new_srt_fp)
     new_data = get_relevant_srt_data(new_srt_fp, new_cols)
-
-
+    
     d = {
         "alignments_in_old": sum([len(old_data[ms]) for ms in old_data]),
         "alignments_in_new": sum([len(new_data[ms]) for ms in new_data]),
@@ -197,9 +170,6 @@ def find_srt_changes(old_srt_fp, new_srt_fp, stats, detailed_stats,
     stats["alignments_in_new_total"] += d["alignments_in_new"]
 
     ignore_offsets = [] # row IDs that are part of a split or join
-
-    # start from the old_data side: identify alignments that are not in the new run,
-    # and those alignments that got split into multiple shorter alignments in the new run: 
 
     for ms1 in old_data:
         if ms1 not in new_data:
@@ -230,11 +200,11 @@ def find_srt_changes(old_srt_fp, new_srt_fp, stats, detailed_stats,
                     #d["combined_in_new"].append(new_row["id"])
                     d["split_in_new"].append({"old row": old_row_id,
                                               "overlapping new rows": overlapping_new_rows})
-
+                    
                     # compute the difference with the old alignment
                     # and the start of the first split fragment
                     # and the end of the last split fragment:
-
+                    
                     #first_new_row = sorted(new_data[ms1], key=lambda row: int(row["begin"]))[0]
                     first_new_row_index = min(overlapping_new_rows.keys())
                     first_new_row = overlapping_new_rows[first_new_row_index]["new row"]
@@ -262,20 +232,23 @@ def find_srt_changes(old_srt_fp, new_srt_fp, stats, detailed_stats,
                     for k in overlapping_new_rows:
                         ignore_offsets.append(overlapping_new_rows[k]["new row ID"])
 
-                else:
-                    pass # we'll deal with those from the new_data side!
-
-    # deal with the other situations: identify alignments that were not in the old run,
-    # shorter alignments in the old run that got combined into one longer alignment in the new run,
-    # and alignments that do overlap in the old and new runs:
-
     for ms1 in new_data:
         if ms1 not in old_data:
             for new_row in new_data[ms1]:
                 row_id = make_row_id(new_row, "new")
                 stats["not_in_old"] += 1
                 d["not_in_old"].append(row_id)
+##        elif len(new_data[ms1]) > len(old_data[ms1]):
+##            stats["split_in_new"] += len(new_data[ms1]) - len(old_data[ms1]
+##            d["split_in_new"].append(row["uid"])
+##        elif len(new_data[ms1]) < len(old_data[ms1]):
+##            stats["combined_in_new"] += len(old_data[ms1] - len(new_data[ms1])
+##            d["combined_in_new"].append(row["uid"])
         else:
+##            if len(new_data[ms1]) > len(old_data[ms1]):
+##                stats["split_in_new"] += len(new_data[ms1]) - len(old_data[ms1])
+##                d["split_in_new"].append(ms1)
+
             for i, new_row in enumerate(new_data[ms1]):
                 new_row_id = make_row_id(new_row, "new")
                 overlapping_old_rows = dict()
@@ -287,17 +260,28 @@ def find_srt_changes(old_srt_fp, new_srt_fp, stats, detailed_stats,
                                                  new_row["begin"], new_row["end"])
                         B2_overlap = get_overlap(old_row["b2"], old_row["e2"],
                                                  new_row["begin2"], new_row["end2"])
+##                        if old_row_id.startswith("old_Shia001131Vols-ara1.completed.ms173_b0433"):
+##                            print("---")
+##                            print(i, new_row_id)
+##                            print(j, old_row_id)
+##                            print("B1_overlap:", B1_overlap)
+##                            print("B2_overlap:", B2_overlap)
                         if B1_overlap and B2_overlap:
+                            #overlapping_old_rows[j] = (B1_overlap, B2_overlap)
+                            #overlapping_old_rows[j] = (B1_overlap, B2_overlap, old_row_id, new_row_id)
                             overlapping_old_rows[j] = {"overlap B1 (start,end)": B1_overlap,
                                                        "overlap B2 (start,end)": B2_overlap,
                                                        "old row": old_row,
                                                        "old row ID": old_row_id}
-
+                            #if old_row_id.startswith("old_Shia001131Vols-ara1.completed.ms173_b0433"):
+                            #    print(overlapping_old_rows)
+                        
                 if len(overlapping_old_rows) == 0:
                     stats["not_in_old"] += 1
                     d["not_in_old"].append(new_row_id)
                 elif len(overlapping_old_rows) > 1:
                     stats["combined_in_new"] += 1
+                    #d["combined_in_new"].append(new_row["id"])
                     overlapping_old_row_ids = [overlapping_old_rows[j]["old row ID"] for j in overlapping_old_rows]
                     d["combined_in_new"].append({"new row": new_row_id,
                                                  "overlapping old rows": overlapping_old_row_ids})
@@ -305,7 +289,7 @@ def find_srt_changes(old_srt_fp, new_srt_fp, stats, detailed_stats,
                     # compute the difference with the new alignment
                     # and the start of the first combined fragment
                     # and the end of the last combined fragment:
-
+                    
                     first_old_row_index = min(overlapping_old_rows.keys())
                     first_old_row = overlapping_old_rows[first_old_row_index]["old row"]
                     B1_overlap = get_overlap(new_row["begin"], new_row["end"],
@@ -326,11 +310,10 @@ def find_srt_changes(old_srt_fp, new_srt_fp, stats, detailed_stats,
                     log_overlap("B1", "end", B1_overlap[0], new_row_id, old_row_id, ignore_offsets, stats, d)
                     log_overlap("B2", "end", B2_overlap[0], new_row_id, old_row_id, ignore_offsets, stats, d)
 
-                    # make sure the offset difference of combined alignments is not counted again later:
+                    # make sure the offset difference of split alignments is not counted again:
                     ignore_offsets.append(new_row_id)
                     for k in overlapping_old_rows:
                         ignore_offsets.append(overlapping_old_rows[k]["old row ID"])
-
                 elif len(overlapping_old_rows) == 1:
                     j = list(overlapping_old_rows.keys())[0]
                     old_row_id = overlapping_old_rows[j]["old row ID"]
@@ -342,15 +325,17 @@ def find_srt_changes(old_srt_fp, new_srt_fp, stats, detailed_stats,
 
                     B1_end_overlap = overlapping_old_rows[j]["overlap B1 (start,end)"][1]
                     log_overlap("B1", "end", B1_end_overlap, old_row_id, new_row_id, ignore_offsets, stats, d)
-
+                    
                     B2_start_overlap = overlapping_old_rows[j]["overlap B2 (start,end)"][0]
                     log_overlap("B2", "start", B2_start_overlap, old_row_id, new_row_id, ignore_offsets, stats, d)
-
+                    
                     B2_end_overlap = overlapping_old_rows[j]["overlap B2 (start,end)"][1]
                     log_overlap("B2", "end", B2_end_overlap, old_row_id, new_row_id, ignore_offsets, stats, d)
-
+                
     fn = old_srt_fp.split("/")[-1][:-4]
     detailed_stats[fn] = d
+
+
 
 ##def find_csv(run_folder, b1, b2, rev=False):
 ##    fn = None
@@ -370,9 +355,7 @@ def find_srt_changes(old_srt_fp, new_srt_fp, stats, detailed_stats,
 
 def find_csv(run_folder, b1, b2, rev=False):
     """
-    Find the csv file that contains the output for b1 and b2 pair in the current run
-
-    Returns the filename of the csv file (or None if it was not found)
+    Find the csv file that contains the output for b1 and b2 pair
     """
     try:
         for f in os.listdir(os.path.join(run_folder, b1)):
@@ -396,17 +379,14 @@ def json2tsv(d):
     return header + "\n" + "\n".join(tsv)
 
 def calculate_averages(all_stats):
-    """
-    Calculate some statistics on the differences of start and end offsets between two runs.
-    """
     for run, stats in all_stats.items():
-        #print("calculating averages for", run)
+        print("calculating averages for", run)
         for metric, func in [("average", statistics.mean), ("median", statistics.median), ("max", max), ("min", min)]:
             for start_or_end in ["start", "end"]:
                 try:
                     stats[f"{metric}_{start_or_end}_difference"] = func(stats[f"all_{start_or_end}_differences"])
                 except Exception as e:
-                    print(f"ERROR calculating {metric}_{start_or_end}_difference:", e)
+                    print(f"{metric}_{start_or_end}_difference", e)
                     stats[f"{metric}_{start_or_end}_difference"] = ""
         #stats["average_start_difference"] = sum(stats["all_start_differences"]) / len(stats["all_start_differences"])
         #stats["average_end_difference"] = sum(stats["all_end_differences"]) / len(stats["all_end_differences"])
@@ -420,28 +400,18 @@ def calculate_averages(all_stats):
             stats["average_start_or_end_difference"] = str((abs(stats["average_start_difference"]) + abs(stats["average_end_difference"]))/2)
         except:
             stats["average_start_or_end_difference"] = ""
-
-        try:
-            stats["not_in_new_plus_not_in_old"] = str(int(stats["not_in_new"]) + int(stats["not_in_old"]))
-        except:
-            stats["not_in_new_plus_not_in_old"] = ""
-
-        try:
-            stats["start_or_end_did_not_change"] = str(int(stats["start_did_not_change"]) + int(stats["end_did_not_change"]))
-        except:
-            stats["start_or_end_did_not_change"] = ""
-
-        # remove the lists of start and end differences from the stats dictionary:
         del stats["all_start_differences"]
         del stats["all_end_differences"]
+    
 
-
-def main(test_csv_folder="output/csv", old_csv_folder="2021_1_4_outputs", stats_folder="stats"):
+def main(test_csv_folder="ouput/csv", old_csv_folder="2021_1_4_outputs",
+         stats_folder="stats"):
     """
-    Compare the outputs from the test runs with the old passim output and store statistics.
+    Compare the ouputs from the test runs with the old passim output
+    and store statistics.
     """
     all_stats = dict()
-
+    
     if not os.path.exists(stats_folder):
         os.makedirs(stats_folder)
     detailed_stats_folder = os.path.join(stats_folder, "detailed")
@@ -470,7 +440,7 @@ def main(test_csv_folder="output/csv", old_csv_folder="2021_1_4_outputs", stats_
             "combined_in_new": 0
             }
         detailed_stats = dict()
-
+        
         for old_output_fn in os.listdir(old_csv_folder):
             old_output_fp = os.path.join(old_csv_folder, old_output_fn)
             b1, b2 = old_output_fn.split(".csv")[0].split("_")
@@ -483,18 +453,15 @@ def main(test_csv_folder="output/csv", old_csv_folder="2021_1_4_outputs", stats_
                 files_not_found.append(run + " : " + old_output_fn)
         all_stats[run] = stats
         outfp = os.path.join(detailed_stats_folder, run+".json")
-        with open(outfp, mode="w", encoding="utf-8") as file:
-            json.dump(detailed_stats, file, ensure_ascii=False,
-                      indent=4, sort_keys=True)
-
-
+        #with open(outfp, mode="w", encoding="utf-8") as file:
+        #    json.dump(detailed_stats, file, ensure_ascii=False,
+        #              indent=4, sort_keys=True)
+    print("keys in all_stats:", list(all_stats.keys()))
+    with open(os.path.join(stats_folder, "all_stats.json"), mode="w", encoding="utf-8") as file:
+        json.dump(all_stats, file, ensure_ascii=False, indent=2, sort_keys=True)
     print("files not found:")
     for i, f in enumerate(files_not_found):
         print(i, f)
-
-    with open(os.path.join(stats_folder, "all_stats.json"), mode="w", encoding="utf-8") as file:
-        json.dump(all_stats, file, ensure_ascii=False, indent=2, sort_keys=True)
-
     calculate_averages(all_stats)
     tsv = json2tsv(all_stats)
     with open(os.path.join(stats_folder, "all_stats.tsv"), mode="w", encoding="utf-8") as file:

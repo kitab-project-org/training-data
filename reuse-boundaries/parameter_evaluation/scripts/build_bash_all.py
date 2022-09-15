@@ -20,7 +20,7 @@ from itertools import product
 import os
 import shutil
 
-OVERWRITE = True # set to True if you want to overwrite existing csv files!
+OVERWRITE = False # set to True if you want to overwrite existing csv files!
 
 # BUILD LISTS OF PARAMETER RANGES: 
 min_match_l = list(range(2, 11, 2))
@@ -99,16 +99,20 @@ if OVERWRITE:
 # build bash script file for each combination of parameters:
 #bash = []
 outfolder = os.path.join(output_folder, "passim_output")
-bash = [f"rm -rf {outfolder}", "rm log.tx", "touch log.txt"] # start bash script by removing any temporary passim output folders
+bash = [f"rm -rf {outfolder}", "rm log.txt", "touch log.txt"] # start bash script by removing any temporary passim output folders
 i = 0
 for mm, ma, gap, n, nt in product(min_match_l, min_align_l, gap_l, n_l, n_gram_type):
-    i += 1
-    bash.append(f'echo "{i} of XXXXXX"')
     if nt:
         outfolder_name_args =  f"{mm}_{ma}_{gap}_{n}_float"
     else:
         outfolder_name_args =  f"{mm}_{ma}_{gap}_{n}_nonfl"
     #outfolder = os.path.join(output_folder, f"{outfolder_name_args}_all")
+    if OVERWRITE or os.path.isdir(os.path.join(csv_folder, outfolder_name_args)):
+        print("skipping", outfolder_name_args, ": already done")
+        continue # do not rerun passim for parameters that have already been tested
+
+    i += 1
+    bash.append(f'echo "{i} of XXXXXX"')
     # run passim (and time its execution):
     cmd =  f"time passim {input_folder}/all {outfolder} --pairwise --maxDF {max_df} "
     cmd += f"--min-match {mm} --min-align {ma} --gap {gap} -n {n} {nt} >> log.txt"
@@ -131,12 +135,8 @@ for mm, ma, gap, n, nt in product(min_match_l, min_align_l, gap_l, n_l, n_gram_t
 bash = [x.replace("XXXXXX", str(i)) for x in bash]
 with open(f"{bash_folder}/all.sh", mode="w", encoding="utf-8") as file:
     file.write("\n".join(bash))
-print(f"-> {i} passim runs written to bash script.")
-print("first line:")
-print(bash[0])
-print("second line:")
-print(bash[1])
-print("third line:")
-print(bash[2])
-print("fourth line:")
-print(bash[3])
+
+print("first couple of lines (separated by --- for readability):")
+for line in bash[:10]:
+    print(line)
+    print("---")

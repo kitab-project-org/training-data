@@ -28,6 +28,9 @@ test_pairs = [
     'Shia001131Vols_EShia0071536'
     ]
 
+
+
+
 def get_overlap(b_old, e_old, b_new, e_new):
     """Check whether the old and new spans overlap.
 
@@ -151,9 +154,44 @@ def log_overlap(b1_or_b2, start_or_end, overlap, old_row_id, new_row_id,
         d[k].append((stmt, old_row_id, new_row_id))
     k = "all_{}_differences".format(start_or_end)
     stats[k].append(overlap)
+    #d["evaluated_alignments_in_old"].append(old_row_id)
+    #stats["evaluated_alignments_in_old"] += 1
+    #d["evaluated_alignments_in_new"].append(new_row_id)
+    #stats["evaluated_alignments_in_new"] += 1
 
 
-def find_srt_changes(old_srt_fp, new_srt_fp, stats, detailed_stats,
+def log_evaluated_alignments(old_or_new, b1, b2, id_ms_d, srt_data, stats, d):
+    for ms1, alignments in srt_data.items():
+        for alignment in alignments:
+             ms2 = alignment["id2"]
+             row_id = make_row_id(alignment, old_or_new)
+             if was_ms_evaluated(b1, ms1, id_ms_d) and was_ms_evaluated(b2, ms2, id_ms_d):
+                 stats["evaluated_alignments_in_"+old_or_new] += 1
+                 d["evaluated_alignments_in_"+old_or_new].append(row_id)
+
+
+def was_ms_evaluated(b, ms, id_ms_d):
+    """
+    Check whether a milestone falls within the list of evaluated milestone ranges
+
+    Args:
+        b (str): book ID 
+        ms (str): milestone ID (<bookID>.ms<msID>)
+        id_ms_d (dict): key: book IDs, values: list of tuples (start, end) of evaluated milestone ranges within that book
+    """
+    if b not in id_ms_d:
+        print(b, "not among evaluated books!")
+        return False
+    evaluated_ranges = id_ms_d[b]
+    ms_no = int(re.findall("\d+", ms)[-1])
+    for start, end in evaluated_ranges:
+        if start <= ms_no <= end:
+            print("ms", ms_no, "of", b, "was evaluated")
+            return True
+    #print("milestone", ms, "of", b, "was not evaluated")
+    return False
+
+def find_srt_changes(old_srt_fp, new_srt_fp, b1, b2, stats, detailed_stats, id_ms_d,
                      old_cols=["id1", "b1", "e1", "id2", "b2", "e2", "uid1", "uid2"],
                      new_cols=["id", "begin", "end", "id2", "begin2", "end2", "uid", "uid2"]):
     """
@@ -178,6 +216,8 @@ def find_srt_changes(old_srt_fp, new_srt_fp, stats, detailed_stats,
     #print("get relevant NEW columns:", new_srt_fp)
     new_data = get_relevant_srt_data(new_srt_fp, new_cols)
 
+    b1 = b1.split("-")[0]
+    b2 = b2.split("-")[0]
 
     d = {
         "alignments_in_old": sum([len(old_data[ms]) for ms in old_data]),
@@ -191,10 +231,17 @@ def find_srt_changes(old_srt_fp, new_srt_fp, stats, detailed_stats,
         "split_in_new": [],
         "combined_in_new": [],
         "start_did_not_change": 0,
-        "end_did_not_change": 0
+        "end_did_not_change": 0,
+        "evaluated_alignments_in_old": [],
+        "evaluated_alignments_in_new": []
     }
     stats["alignments_in_old_total"] += d["alignments_in_old"]
     stats["alignments_in_new_total"] += d["alignments_in_new"]
+
+    log_evaluated_alignments("old", b1, b2, id_ms_d, old_data, stats, d)
+    log_evaluated_alignments("new", b1, b2, id_ms_d, new_data, stats, d)
+
+
 
     ignore_offsets = [] # row IDs that are part of a split or join
 
@@ -202,17 +249,30 @@ def find_srt_changes(old_srt_fp, new_srt_fp, stats, detailed_stats,
     # and those alignments that got split into multiple shorter alignments in the new run: 
 
     for ms1 in old_data:
+        # do not check alignments in milestones that were not evaluated:
+        if id_ms_d:
+            if not was_ms_evaluated(b1, ms1, id_ms_d):
+                continue
+
         if ms1 not in new_data:
             for old_row in old_data[ms1]:
                 stats["not_in_new"] += 1
                 old_row_id = make_row_id(old_row, "old")
                 d["not_in_new"].append(old_row_id)
+                #d["evaluated_alignments_in_old"].append(old_row_id)
+                #stats["evaluated_alignments_in_old"] += 1
         else:
             for i, old_row in enumerate(old_data[ms1]):
                 old_row_id = make_row_id(old_row, "old")
                 overlapping_new_rows = dict()
                 for j, new_row in enumerate(sorted(new_data[ms1], key=lambda row: int(row["begin"]))):
                     if new_row["id2"] == old_row["id2"]:
+                        # do not check alignments in milestones that were not evaluated:
+                        ms2 = new_row["id2"]
+                        if id_ms_d:
+                            if not was_ms_evaluated(b2, ms2, id_ms_d):
+                                continue
+
                         new_row_id = make_row_id(new_row, "new")
                         B1_overlap = get_overlap(old_row["b1"], old_row["e1"],
                                                  new_row["begin"], new_row["end"])
@@ -230,6 +290,11 @@ def find_srt_changes(old_srt_fp, new_srt_fp, stats, detailed_stats,
                     #d["combined_in_new"].append(new_row["id"])
                     d["split_in_new"].append({"old row": old_row_id,
                                               "overlapping new rows": overlapping_new_rows})
+                    #d["evaluated_alignments_in_old"].append(old_row_id)
+                    #stats["evaluated_alignments_in_old"] += 1
+                    #for j, r in overlapping_new_rows.items():
+                    #    d["evaluated_alignments_in_new"].append(r["new row ID"])
+                    #    stats["evaluated_alignments_in_new"] += 1
 
                     # compute the difference with the old alignment
                     # and the start of the first split fragment
@@ -270,11 +335,19 @@ def find_srt_changes(old_srt_fp, new_srt_fp, stats, detailed_stats,
     # and alignments that do overlap in the old and new runs:
 
     for ms1 in new_data:
+        # do not check alignments in milestones that were not evaluated:
+        if id_ms_d:
+            if not was_ms_evaluated(b1, ms1, id_ms_d):
+                continue
+
         if ms1 not in old_data:
             for new_row in new_data[ms1]:
                 row_id = make_row_id(new_row, "new")
                 stats["not_in_old"] += 1
                 d["not_in_old"].append(row_id)
+                #d["evaluated_alignments_in_new"].append(row_id)
+                #stats["evaluated_alignments_in_new"] += 1
+
         else:
             for i, new_row in enumerate(new_data[ms1]):
                 new_row_id = make_row_id(new_row, "new")
@@ -283,6 +356,12 @@ def find_srt_changes(old_srt_fp, new_srt_fp, stats, detailed_stats,
                     #old_row = old_data[ms1][j]
                     old_row_id = make_row_id(old_row, "old")
                     if new_row["id2"] == old_row["id2"]:  # this must always be True, because id = version id + milestone number?!
+                        # do not check alignments in milestones that were not evaluated:
+                        ms2 = new_row["id2"]
+                        if id_ms_d:
+                            if not was_ms_evaluated(b2, ms2, id_ms_d):
+                                continue
+
                         B1_overlap = get_overlap(old_row["b1"], old_row["e1"],
                                                  new_row["begin"], new_row["end"])
                         B2_overlap = get_overlap(old_row["b2"], old_row["e2"],
@@ -296,11 +375,21 @@ def find_srt_changes(old_srt_fp, new_srt_fp, stats, detailed_stats,
                 if len(overlapping_old_rows) == 0:
                     stats["not_in_old"] += 1
                     d["not_in_old"].append(new_row_id)
+                    #d["evaluated_alignments_in_new"].append(new_row_id)
+                    #stats["evaluated_alignments_in_new"] += 1
+
+
                 elif len(overlapping_old_rows) > 1:
                     stats["combined_in_new"] += 1
                     overlapping_old_row_ids = [overlapping_old_rows[j]["old row ID"] for j in overlapping_old_rows]
                     d["combined_in_new"].append({"new row": new_row_id,
                                                  "overlapping old rows": overlapping_old_row_ids})
+                    #d["evaluated_alignments_in_new"].append(new_row_id)
+                    #stats["evaluated_alignments_in_new"] += 1
+                    #for r in overlapping_old_row_ids:
+                    #    d["evaluated_alignments_in_old"].append(r)
+                    #    stats["evaluated_alignments_in_old"] += 1
+
 
                     # compute the difference with the new alignment
                     # and the start of the first combined fragment
@@ -350,6 +439,9 @@ def find_srt_changes(old_srt_fp, new_srt_fp, stats, detailed_stats,
                     log_overlap("B2", "end", B2_end_overlap, old_row_id, new_row_id, ignore_offsets, stats, d)
 
     fn = old_srt_fp.split("/")[-1][:-4]
+    if not id_ms_d:
+        del d["evaluated_alignments_in_old"]
+        del d["evaluated_alignments_in_new"]
     detailed_stats[fn] = d
 
 ##def find_csv(run_folder, b1, b2, rev=False):
@@ -436,7 +528,7 @@ def calculate_averages(all_stats):
         del stats["all_end_differences"]
 
 
-def main(test_csv_folder="output/csv", old_csv_folder="2021_1_4_outputs", stats_folder="stats"):
+def main(test_csv_folder, old_csv_folder, stats_folder, id_ms_d):
     """
     Compare the outputs from the test runs with the old passim output and store statistics.
     """
@@ -445,6 +537,8 @@ def main(test_csv_folder="output/csv", old_csv_folder="2021_1_4_outputs", stats_
     if not os.path.exists(stats_folder):
         os.makedirs(stats_folder)
     detailed_stats_folder = os.path.join(stats_folder, "detailed")
+    if id_ms_d:
+        detailed_stats_folder += "_evaluated_milestones"
     if not os.path.exists(detailed_stats_folder):
         os.makedirs(detailed_stats_folder)
 
@@ -467,7 +561,9 @@ def main(test_csv_folder="output/csv", old_csv_folder="2021_1_4_outputs", stats_
             "all_start_differences": [],
             "all_end_differences": [],
             "split_in_new": 0,
-            "combined_in_new": 0
+            "combined_in_new": 0,
+            "evaluated_alignments_in_old": 0,
+            "evaluated_alignments_in_new": 0
             }
         detailed_stats = dict()
 
@@ -477,10 +573,13 @@ def main(test_csv_folder="output/csv", old_csv_folder="2021_1_4_outputs", stats_
             test_csv_fn = find_csv(run_folder, b1, b2, rev=False)
             if test_csv_fn:
                 test_csv_fp = os.path.join(run_folder, b1, test_csv_fn)
-                find_srt_changes(old_output_fp, test_csv_fp, stats, detailed_stats)
+                find_srt_changes(old_output_fp, test_csv_fp, b1, b2, stats, detailed_stats, id_ms_d)
             else:
                 print(run, ": no output found for", old_output_fn)
                 files_not_found.append(run + " : " + old_output_fn)
+        if not id_ms_d:
+            del stats["evaluated_alignments_in_old"]
+            del stats["evaluated_alignments_in_new"]
         all_stats[run] = stats
         outfp = os.path.join(detailed_stats_folder, run+".json")
         with open(outfp, mode="w", encoding="utf-8") as file:
@@ -492,12 +591,16 @@ def main(test_csv_folder="output/csv", old_csv_folder="2021_1_4_outputs", stats_
     for i, f in enumerate(files_not_found):
         print(i, f)
 
-    with open(os.path.join(stats_folder, "all_stats.json"), mode="w", encoding="utf-8") as file:
+    if id_ms_d:
+        outfn = "all_stats_for_evaluated_milestones"
+    else:
+        outfn = "all_stats"
+    with open(os.path.join(stats_folder, outfn+".json"), mode="w", encoding="utf-8") as file:
         json.dump(all_stats, file, ensure_ascii=False, indent=2, sort_keys=True)
 
     calculate_averages(all_stats)
     tsv = json2tsv(all_stats)
-    with open(os.path.join(stats_folder, "all_stats.tsv"), mode="w", encoding="utf-8") as file:
+    with open(os.path.join(stats_folder, outfn+".tsv"), mode="w", encoding="utf-8") as file:
         file.write(tsv)
 
 
@@ -509,7 +612,15 @@ files_not_found = []
 test_csv_folder = os.path.join(root, "output", "csv")
 old_csv_folder = os.path.join(root, "2021_1_4_outputs")
 stats_folder = os.path.join(root, "stats")
-main(test_csv_folder, old_csv_folder, stats_folder)
+id_ms_list_fp = os.path.join(root, "tagged_texts", "id_ms_list.csv")
+with open(id_ms_list_fp, mode="r", encoding="utf-8") as file:
+    id_ms_d = dict()
+    for row in file.read().splitlines()[1:]:
+        id_, start, end = [x.strip() for x in row.split(",")]
+        if id_ not in id_ms_d:
+            id_ms_d[id_] = []
+        id_ms_d[id_].append( (int(start), int(end)) )
+main(test_csv_folder, old_csv_folder, stats_folder, id_ms_d)
 for i, f in enumerate(files_not_found):
     print(i, f)
 
