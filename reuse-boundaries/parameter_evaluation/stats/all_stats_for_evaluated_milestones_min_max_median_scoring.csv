@@ -1,0 +1,8 @@
+,Unnamed: 0,alignments_in_new_total,alignments_in_old_total,average_end_difference,average_start_difference,average_start_or_end_difference,combined_in_new,end_did_not_change,ends_earlier_in_new,ends_later_in_new,evaluated_alignments_in_new,evaluated_alignments_in_old,max_end_difference,max_start_difference,median_end_difference,median_start_difference,min_end_difference,min_start_difference,not_in_new,not_in_new_plus_not_in_old,not_in_old,split_in_new,start_did_not_change,start_or_end_did_not_change,starts_earlier_in_new,starts_later_in_new
+0,Max,21426,1657,246.1727642,62.95910781,137.6158537,2,291,240,477,1516,345,1628,1067,59.5,0,-211,-100,55,2847,2847,165,92,292,601,218
+1,Min,1147,1657,5.659163987,-44.6909621,4.872159091,0,81,35,185,257,345,717,363,0,-1.5,-1040,-948,0,112,71,6,0,158,245,83
+2,Median,2668,1657,79.04664723,3.669715527,45.91320475,0,146,112,326.5,480,345,1299.5,873,0,-1,-538,-382,3,226.5,223.5,52.5,31,204,476,131
+3,Use,t,f,f,f,f,f,f,f,f,t,f,f,f,t,f,f,f,t,f,f,f,f,t,f,f
+4,Lower_penalty,1500,,,,,,,,,300,,,,0,,,,0,,,,,204,,
+5,Upper_penalty,2500,,,,,,,,,450,,,,5,,,,3,,,,,300,,
+6,Penalty,10,,,,,,,,,20,,,,10,,,,10,,,,,10,,
